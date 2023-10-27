@@ -21,7 +21,7 @@ separator_line = "-" * (len(header_line) + 6)
 # Replace this with your actual token
 article_data = {}
 
-def parse_website(query):
+async def parse_website(query):
     url = "https://new.arlis.am/am/"
     print("hiiiiiiiiii")
     if url:
@@ -72,7 +72,7 @@ def start(update: Update, context: CallbackContext):
 
 
 # @dp.message_handler(commands=Filters.text & ~Filters.command)
-def handle_text_message(update, context):
+async def handle_text_message(update, context):
     # user_id = update.message.from_user.id
     # text = update.message.text
     print('hereeeeee')
@@ -80,7 +80,7 @@ def handle_text_message(update, context):
     
     # Send a response back to the user
     # await get_all_news(update.message)
-    update.message.reply_text(update.message)
+    await update.message.reply_text(update.message)
     # print(text)
     # await text
 
@@ -89,7 +89,7 @@ def search(update: Update, context: CallbackContext):
     update.message.reply_text("Input and Send a keyword that you want to search in web.")
 
 
-def get_all_news(message: types.Message):
+async def get_all_news(message: types.Message):
     with open("news_dict.json") as file:
         news_dict = json.load(file)
 
@@ -102,7 +102,7 @@ def get_all_news(message: types.Message):
                 f"URL: {v['article_url']}\n" \
                 f"{separator_line}"
 
-        message.answer(news)
+        await message.answer(news)
 
 
 if __name__ == '__main__':
