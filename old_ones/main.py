@@ -1,6 +1,9 @@
 import json
 import requests
 from bs4 import BeautifulSoup
+from aiogram import Bot, Dispatcher, types
+from aiogram import executor
+from aiogram.utils.markdown import hbold, hunderline, hcode, hlink
 from datetime import datetime
 import time
 
@@ -92,6 +95,22 @@ def check_news_update():
         json.dump(news_dict, file, indent=4, ensure_ascii=False)
 
     return fresh_news
+
+async def get_all_news(message: types.Message):
+    with open("news_dict.json") as file:
+        news_dict = json.load(file)
+
+    for k, v in news_dict.items():
+        news = f"{header_line}\n" \
+                f"<b>Date: {v['article_day']} {v['article_month']}</b>\n" \
+                f"{separator_line}\n" \
+                f"<u>Title: {v['article_title']}</u>\n" \
+                f"<code>Description: {v['article_desc']}</code>\n" \
+                f"URL: {v['article_url']}\n" \
+                f"{separator_line}"
+
+
+        await message.answer(news)
 
 
 def main():

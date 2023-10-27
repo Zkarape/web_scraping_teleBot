@@ -33,6 +33,63 @@
 # if __name__ == '__main__':
 #     main()
 
+#//////////////////////////////////////////////
+# def process_text_message(text)
+# {
+#     parse_website(text)
+
+# }
+
+# def show_search_window(update):
+#     keyboard = [
+#         [InlineKeyboardButton("Submit", callback_data='submit')],
+#     ]
+#     reply_markup = InlineKeyboardMarkup(keyboard)
+#     update.message.reply_text("Enter a keyword to search:", reply_markup=reply_markup)
+
+# def search_keyword(update: Update, context: CallbackContext):
+#     user_id = update.message.from_user.id
+#     context.user_data[user_id] = {'keyword': None}
+
+#     update.message.reply_text("Please enter the keyword you want to search for:")
+#     return SEARCH_KEYWORD
+
+# def search_website(update: Update, context: CallbackContext):
+#     user_id = update.message.from_user.id
+#     keyword = update.message.text
+#     context.user_data[user_id]['keyword'] = keyword
+
+#     if not keyword:
+#         update.message.reply_text("You didn't enter a keyword. Please try again.")
+#         return SEARCH_KEYWORD
+#     else:
+#         # Access the stored keyword using context.user_data[user_id]['keyword']
+#         stored_keyword = context.user_data[user_id]['keyword']
+#         print("Stored keyword:", stored_keyword)
+        
+#         # Now you can use the stored keyword in your search logic.
+#         # For example, you can use 'stored_keyword' in the URL or for web scraping.
+        
+#         # Rest of your search logic here.
+
+#     return ConversationHandler.END
+
+
+# def news_filter(update: Update, context: CallbackContext):
+#     user_input = update.message.text
+
+#     search_results = search_website(user_input)
+
+#     if search_results:
+#         message = ""
+#         for search_result in search_results:
+#             message += f"**Title:** {search_result['title']}\n"
+#             message += f"**Description:** {search_result['description']}\n"
+#             message += f"**Link:** {search_result['link']}\n\n"
+
+#         update.message.reply_text(message, parse_mode='Markdown')
+#     else:
+        # update.message.reply_text("No search results found.")
 
 import asyncio
 import datetime
